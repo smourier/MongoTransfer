@@ -52,7 +52,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="city.bat" />
+    <None Include="city.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

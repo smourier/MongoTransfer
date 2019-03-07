@@ -84,9 +84,11 @@ namespace MongoTransfer.Cli
             Console.WriteLine("Input server      : " + inSettings.Server);
             Console.WriteLine("Input database    : " + inDbName);
             Console.WriteLine("Input collection  : " + inCollName);
-            Console.WriteLine("Output server     : " + outSettings.Server);
+            Console.WriteLine();
+            Console.WriteLine("Output server     : " + string.Join(", ", outSettings.Servers));
             Console.WriteLine("Output database   : " + outDbName);
             Console.WriteLine("Output collection : " + outCollName);
+            Console.WriteLine();
             Console.WriteLine("Mirror mode       : " + mm);
             Console.WriteLine("Batch size        : " + batch);
 
