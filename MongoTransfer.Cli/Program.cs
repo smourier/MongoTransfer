@@ -156,11 +156,15 @@ namespace MongoTransfer.Cli
                     Console.WriteLine(outIds.Count + " document(s) exist in the output collection and not in the input collection. Ids have been output to '" + path + "'.");
                     if (mm == MirrorMode.Delete)
                     {
+                        var models = new List<DeleteOneModel<BsonDocument>>();
                         foreach (var id in outIds)
                         {
                             var idFilter = Builders<BsonDocument>.Filter.Eq(_idName, id);
-                            outColl.DeleteOne(idFilter);
+                            var model = new DeleteOneModel<BsonDocument>(idFilter);
+                            models.Add(model);
                         }
+
+                        outColl.BulkWriteAsync(models).Wait();
                         Console.WriteLine("Delete mode. " + outIds.Count + " document(s) have been deleted from the output collection.");
                     }
                     else
