@@ -52,6 +52,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="category.bat" />
     <None Include="city.bat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
