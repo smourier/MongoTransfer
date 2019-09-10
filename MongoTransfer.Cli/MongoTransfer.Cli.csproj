@@ -36,8 +36,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandLine.cs" />
@@ -48,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MongoDB.Driver">
-      <Version>2.7.3</Version>
+      <Version>2.9.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

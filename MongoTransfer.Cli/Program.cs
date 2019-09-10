@@ -17,17 +17,17 @@ namespace MongoTransfer.Cli
         const string _defaultCnx = "mongodb://localhost:27017";
         const string _idName = "_id";
 
-        static void Main(string[] args)
+        static void Main()
         {
             if (Debugger.IsAttached)
             {
-                SafeMain(args);
+                SafeMain();
                 return;
             }
 
             try
             {
-                SafeMain(args);
+                SafeMain();
             }
             catch (Exception e)
             {
@@ -35,7 +35,7 @@ namespace MongoTransfer.Cli
             }
         }
 
-        static void SafeMain(string[] args)
+        static void SafeMain()
         {
             Console.WriteLine("MongoTransfer - Copyright (C) 2018-" + DateTime.Now.Year + " Simon Mourier. All rights reserved.");
             Console.WriteLine();

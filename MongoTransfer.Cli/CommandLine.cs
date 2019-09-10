@@ -130,7 +130,7 @@ namespace MongoTransfer
             return s.Nullify();
         }
 
-        public static T GetArgument<T>(int index, T defaultValue = default(T), IFormatProvider provider = null)
+        public static T GetArgument<T>(int index, T defaultValue = default, IFormatProvider provider = null)
         {
             if (!_positionArguments.TryGetValue(index, out string s))
                 return defaultValue;
@@ -146,7 +146,7 @@ namespace MongoTransfer
             return Conversions.ChangeType(s, conversionType, defaultValue, provider);
         }
 
-        public static T GetArgument<T>(string name, T defaultValue = default(T), IFormatProvider provider = null)
+        public static T GetArgument<T>(string name, T defaultValue = default, IFormatProvider provider = null)
         {
             if (name == null)
                 throw new ArgumentNullException(nameof(name));
@@ -165,7 +165,7 @@ namespace MongoTransfer
             if (name == null)
                 throw new ArgumentNullException(nameof(name));
 
-            return _namedArguments.TryGetValue(name, out string s);
+            return _namedArguments.TryGetValue(name, out _);
         }
 
         public static object GetArgument(string name, object defaultValue, Type conversionType, IFormatProvider provider = null)

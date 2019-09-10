@@ -66,7 +66,7 @@ namespace MongoTransfer
         {
             if (!TryChangeType(input, typeof(T), provider, out object tvalue))
             {
-                value = default(T);
+                value = default;
                 return false;
             }
 
@@ -401,7 +401,7 @@ namespace MongoTransfer
             }
         }
 
-        private static bool StringToEnum(Type type, Type underlyingType, string[] names, Array values, string input, out object value)
+        private static bool StringToEnum(Type type, string[] names, Array values, string input, out object value)
         {
             for (int i = 0; i < names.Length; i++)
             {
@@ -565,11 +565,10 @@ namespace MongoTransfer
                 return false;
             }
 
-            var underlyingType = Enum.GetUnderlyingType(type);
             var values = Enum.GetValues(type);
             // some enums like System.CodeDom.MemberAttributes *are* flags but are not declared with Flags...
             if (!type.IsDefined(typeof(FlagsAttribute), true) && stringInput.IndexOfAny(_enumSeparators) < 0)
-                return StringToEnum(type, underlyingType, names, values, stringInput, out value);
+                return StringToEnum(type, names, values, stringInput, out value);
 
             // multi value enum
             var tokens = stringInput.Split(_enumSeparators, StringSplitOptions.RemoveEmptyEntries);
@@ -586,7 +585,7 @@ namespace MongoTransfer
                 if (token == null)
                     continue;
 
-                if (!StringToEnum(type, underlyingType, names, values, token, out object tokenValue))
+                if (!StringToEnum(type, names, values, token, out object tokenValue))
                 {
                     value = Activator.CreateInstance(type);
                     return false;
